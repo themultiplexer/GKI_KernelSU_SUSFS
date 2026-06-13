@@ -188,11 +188,43 @@ runs:
         if [ -f "bazel-bin/common/kernel_aarch64/Image" ]; then
           echo "Found Image at bazel-bin/common/kernel_aarch64/Image"
           cp "bazel-bin/common/kernel_aarch64/Image" "${{ github.workspace }}/AnyKernel3/Image"
+
+          cp "bazel-bin/common/kernel_aarch64/rt61pci.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/cfg80211.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2x00mmio.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2800usb.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt73usb.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/crc-itu-t.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/mac80211.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2800lib.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/eeprom_93cx6.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2x00lib.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2x00pci.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2500usb.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "bazel-bin/common/kernel_aarch64/rt2x00usb.ko" "${{ github.workspace }}/AnyKernel3/"
+
+
           exit 0
         fi
         if [ -f "/home/runner/out/dist/Image" ]; then
           echo "Found Image at /home/runner/out/dist/Image"
+
+          cp "/home/runner/out/dist/rt61pci.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/cfg80211.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2x00mmio.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2800usb.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt73usb.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/crc-itu-t.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/mac80211.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2800lib.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/eeprom_93cx6.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2x00lib.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2x00pci.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2500usb.ko" "${{ github.workspace }}/AnyKernel3/"
+          cp "/home/runner/out/dist/rt2x00usb.ko" "${{ github.workspace }}/AnyKernel3/"
+
           cp "/home/runner/out/dist/Image" "${{ github.workspace }}/AnyKernel3/Image"
+
           exit 0
         fi
 
