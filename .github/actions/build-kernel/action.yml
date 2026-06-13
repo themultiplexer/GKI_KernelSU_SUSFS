@@ -73,6 +73,26 @@ runs:
             //common:kernel_aarch64_dist \
             -- --destdir=/home/runner/out
         else
+
+          sed -i '/_COMMON_GKI_MODULES_LIST = \[/{
+          /_COMMON_GKI_MODULES_LIST = \[/{
+          a\
+              "drivers/net/wireless/ralink/rt2x00/rt61pci.ko",\
+              "net/wireless/cfg80211.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00mmio.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2800usb.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt73usb.ko",\
+              "lib/crc-itu-t.ko",\
+              "net/mac80211/mac80211.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2800lib.ko",\
+              "drivers/misc/eeprom/eeprom_93cx6.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00lib.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00pci.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2500usb.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00usb.ko",
+          }
+          }' common/modules.bzl
+        
           tools/bazel run \
             --config=fast \
             --config=stamp \
@@ -91,6 +111,7 @@ runs:
       set -euo pipefail
       if [ -f "/home/runner/out/dist/Image" ]; then
         echo "Found Image at /home/runner/out/dist/Image"
+
         if [[ ${{ inputs.bypass }} == "true" ]]; then
           cp "/home/runner/out/dist/Image" "${{ github.workspace }}/AnyKernel3/Bypass-Image"
         else
@@ -102,6 +123,22 @@ runs:
         fi
       if [ -f "/home/runner/out/Image" ]; then
         echo "Found Image at /home/runner/out/Image"
+        ls -la /home/runner/out/
+
+        cp "/home/runner/out/rt61pci.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/cfg80211.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2x00mmio.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2800usb.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt73usb.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/crc-itu-t.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/mac80211.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2800lib.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/eeprom_93cx6.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2x00lib.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2x00pci.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2500usb.ko" "${{ github.workspace }}/AnyKernel3/"
+        cp "/home/runner/out/rt2x00usb.ko" "${{ github.workspace }}/AnyKernel3/"
+    
         if [[ ${{ inputs.bypass }} == "true" ]]; then
           cp "/home/runner/out/Image" "${{ github.workspace }}/AnyKernel3/Bypass-Image"
         else
