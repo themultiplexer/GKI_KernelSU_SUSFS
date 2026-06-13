@@ -74,7 +74,9 @@ runs:
             -- --destdir=/home/runner/out
         else
 
-          sed -i '/module_outs *= *\[/,/]/{
+         cat common/BUILD.bazel
+
+          sed -i '/module_outs *= *\[/{
           /module_outs *= *\[/{
           a\
               "drivers/net/wireless/ralink/rt2x00/rt61pci.ko",\
@@ -92,6 +94,8 @@ runs:
               "drivers/net/wireless/ralink/rt2x00/rt2x00usb.ko",
           }
           }' common/BUILD.bazel
+
+          cat common/BUILD.bazel
         
           tools/bazel run \
             --config=fast \
