@@ -74,10 +74,9 @@ runs:
             -- --destdir=/home/runner/out
         else
 
-         cat common/BUILD.bazel
-
-          sed -i '/module_outs *= *\[/{
-          /module_outs *= *\[/{
+         cat common/modules.bzl
+         sed -i '/_ROCKPI4_MODULE_OUTS = \[/{
+          /_ROCKPI4_MODULE_OUTS = \[/{
           a\
               "drivers/net/wireless/ralink/rt2x00/rt61pci.ko",\
               "net/wireless/cfg80211.ko",\
@@ -94,8 +93,24 @@ runs:
               "drivers/net/wireless/ralink/rt2x00/rt2x00usb.ko",
           }
           }' common/BUILD.bazel
-
-          cat common/BUILD.bazel
+          sed -i '/_DB845C_MODULE_OUTS = \[/{
+          /_DB845C_MODULE_OUTS = \[/{
+          a\
+              "drivers/net/wireless/ralink/rt2x00/rt61pci.ko",\
+              "net/wireless/cfg80211.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00mmio.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2800usb.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt73usb.ko",\
+              "lib/crc-itu-t.ko",\
+              "net/mac80211/mac80211.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2800lib.ko",\
+              "drivers/misc/eeprom/eeprom_93cx6.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00lib.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00pci.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2500usb.ko",\
+              "drivers/net/wireless/ralink/rt2x00/rt2x00usb.ko",
+          }
+          }' common/BUILD.bazel
         
           tools/bazel run \
             --config=fast \
